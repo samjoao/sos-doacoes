@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S.O.S.Doações - Marketplace de Doações</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    // Controlar acesso à aba Doações no header, mostrar apenas se usuário logado
+    function verificarLoginNoHeader() {
+      const usuario = localStorage.getItem('usuarioLogado');
+      const doacoesLink = document.getElementById('navDoacoes');
+      if (usuario) {
+        doacoesLink.style.display = 'inline-block';
+      } else {
+        doacoesLink.style.display = 'none';
+      }
+    }
+    window.addEventListener('DOMContentLoaded', verificarLoginNoHeader);
+  </script>
+</head>
+<body>
+  <header>
+    <h1>S.O.S.Doações</h1>
+    <nav>
+      <a href="index.html" aria-label="Página inicial">Início</a>
+      <a href="login.html" aria-label="Página de Login">Login</a>
+      <a href="cadastro.html" aria-label="Página de Cadastro">Cadastro</a>
+      <a href="doacoes.html" aria-label="Página de Doações" id="navDoacoes" style="display:none;">Doações</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Bem-vindo ao S.O.S.Doações</h2>
+      <p>O marketplace que conecta pessoas dispostas a doar com ONGs que transformam vidas. Junte-se a nós para fazer a diferença!</p>
+      <a href="cadastro.html" class="btn-primary" aria-label="Cadastrar-se no S.O.S.Doações">Cadastre-se Agora</a>
+    </section>
+
+    <section class="features" aria-label="Principais funcionalidades do S.O.S.Doações">
+      <div class="feature-item" tabindex="0">
+        <h3>Doações Seguras</h3>
+        <p>Poste itens em boa conservação para pessoas e ONGs confiáveis.</p>
+      </div>
+      <div class="feature-item" tabindex="0">
+        <h3>Reservas Simples</h3>
+        <p>ONGs podem reservar itens para coleta fácil e rápida.</p>
+      </div>
+      <div class="feature-item" tabindex="0">
+        <h3>Variedade de Categorias</h3>
+        <p>Vestuário, alimentos, produtos de limpeza e muito mais.</p>
+      </div>
+      <div class="feature-item" tabindex="0">
+        <h3>Suporte Comunitário</h3>
+        <p>Oferecemos suporte contínuo para doadores e ONGs.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2024 S.O.S.Doações - Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
+

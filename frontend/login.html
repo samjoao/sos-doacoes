@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - S.O.S.Doações</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-box" role="main" aria-label="Formulário de Login S.O.S.Doações">
+      <h1>S.O.S.Doações</h1>
+      <p class="tagline">Conectando doadores e ONGs para um mundo melhor</p>
+      <form id="loginForm" autocomplete="off" novalidate>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required aria-required="true" />
+          <span class="validation-message" aria-live="polite"></span>
+        </div>
+        <div class="input-group">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" placeholder="Sua senha" required aria-required="true" minlength="6" />
+          <span class="validation-message" aria-live="polite"></span>
+        </div>
+        <div class="input-group">
+          <label for="tipo">Tipo de usuário</label>
+          <select id="tipo" name="tipo" required aria-required="true" >
+            <option value="" disabled selected>Selecione o tipo</option>
+            <option value="pessoa">Pessoa</option>
+            <option value="ong">ONG</option>
+          </select>
+          <span class="validation-message" aria-live="polite"></span>
+        </div>
+        <button type="submit" aria-label="Entrar no sistema">Entrar</button>
+      </form>
+      <p class="signup-text">
+        Ainda não tem cadastro? <a href="cadastro.html">Cadastre-se aqui</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Validação simples de formulário no frontend com feedback visual
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      let valid = true;
+
+      [...form.elements].forEach(input => {
+        const message = input.parentElement.querySelector('.validation-message');
+        if (input.required && !input.value.trim()) {
+          if(message) message.textContent = 'Este campo é obrigatório.';
+          valid = false;
+        } else if(input.minLength > 0 && input.value.length < input.minLength) {
+          if(message) message.textContent = `Mínimo ${input.minLength} caracteres.`;
+          valid = false;
+        } else {
+          if(message) message.textContent = '';
+        }
+      });
+
+      if(valid){
+        form.submit();
+      }
+    });
+  </script>
+</body>
+</html>
+

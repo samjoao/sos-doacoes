@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastro - S.O.S.Doações</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-box">
+      <h1>Cadastro</h1>
+      <p class="tagline">Junte-se a nós para ajudar mais pessoas e ONGs</p>
+      <form id="cadastroForm">
+        <input type="text" name="nome" placeholder="Nome completo" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="senha" placeholder="Senha" required />
+        <select name="tipo" required>
+          <option value="" disabled selected>Tipo de usuário</option>
+          <option value="pessoa">Pessoa (doadora)</option>
+          <option value="ong">ONG</option>
+        </select>
+        <button type="submit">Cadastrar</button>
+      </form>
+      <p class="signup-text">
+        Já tem conta? <a href="login.html">Faça login aqui</a>
+      </p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+

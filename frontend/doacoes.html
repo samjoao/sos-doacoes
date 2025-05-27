@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doações - S.O.S. Doações</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Doações</h1>
+    <form id="doacaoForm" enctype="multipart/form-data">
+        <label for="imagem">Foto da Doação:</label>
+        <input type="file" id="imagem" name="imagem" accept="image/*" required />
+
+        <label for="categoria">Categoria:</label>
+        <select id="categoria" name="categoria" required>
+            <option value="" disabled selected>Selecione uma categoria</option>
+            <option value="alimentos">Alimentos</option>
+            <option value="vestuarios">Vestuários</option>
+            <option value="produtos_limpeza">Produtos de Limpeza</option>
+            <option value="outro">Outro</option>
+        </select>
+
+        <div class="input-group" id="descricaoContainer" style="display: none;">
+            <label for="descricaoPersonalizada">Descreva a categoria:</label>
+            <input type="text" id="descricaoPersonalizada" name="descricaoPersonalizada" placeholder="Ex: Brinquedos, Móveis, etc." />
+        </div>
+
+        <label for="estado">Estado de Conservação:</label>
+        <select id="estado" name="estado" required>
+            <option value="">Selecione o estado</option>
+            <option value="Excelente estado">Excelente estado</option>
+            <option value="Bom estado">Bom estado</option>
+            <option value="Estado regular">Estado regular</option>
+        </select>
+
+        <label for="alimenticio">É Alimentício?</label>
+        <select id="alimenticio" name="alimenticio" required>
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+        </select>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao" placeholder="Descrição" required></textarea>
+
+        <button type="submit">Cadastrar Doação</button>
+    </form>
+
+    <h2>Doações Disponíveis</h2>
+    <div id="listaDoacoes"></div>
+
+    <script src="script.js"></script>
+    <script>
+        const categoriaSelect = document.getElementById('categoria');
+        const descricaoContainer = document.getElementById('descricaoContainer');
+
+        categoriaSelect.addEventListener('change', function() {
+            if (this.value === 'outro') {
+                descricaoContainer.style.display = 'block';
+            } else {
+                descricaoContainer.style.display = 'none';
+                document.getElementById('descricaoPersonalizada').value = ''; // Limpa o campo se não for "Outro"
+            }
+        });
+
+        document.getElementById('doacaoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aqui você pode adicionar a lógica para enviar os dados do formulário
+            alert('Doação cadastrada com sucesso!');
+        });
+    </script>
+</body>
+</html>
