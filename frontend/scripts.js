@@ -1,4 +1,8 @@
-import { URL } from 'url';
+const myURL = new URL('https://example.com/path?name=value');
+console.log(myURL.hostname); // 'example.com'
+console.log(myURL.pathname); // '/path'
+console.log(myURL.search); // '?name=value'
+
 
 const apiUrl = 'http://localhost:3000';
 

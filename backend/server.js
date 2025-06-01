@@ -3,7 +3,8 @@ import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sqlite3 from 'sqlite3';
-
+import doacoes from './backend/routes/doacoes.js';
+   
 // Para obter o diretório atual
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -46,3 +47,11 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+app.use(express.static('frontend', {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.js')) {
+      res.set("Content-Type", "text/javascript");
+    }
+  }
+}));

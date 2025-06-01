@@ -1,5 +1,8 @@
 import sqlite3 from 'sqlite3';
-import { fileURLToPath } from 'url';
+const myURL = new URL('https://example.com/path?name=value');
+console.log(myURL.hostname); // 'example.com'
+console.log(myURL.pathname); // '/path'
+console.log(myURL.search); // '?name=value'
 import path from 'path';
 
 const dbPath = path.resolve(__dirname, 'sosdoacoes.db');
