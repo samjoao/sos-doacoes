@@ -3,13 +3,11 @@ import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sqlite3 from 'sqlite3';
-import doacoes from './backend/routes/doacoes.js';
-   
+import doacoes from './routes/doacoes.js'; // Importando o roteador de doações
+
 // Para obter o diretório atual
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-const doacoesRouter = import('./backend/routes/doacoes.js'); // Ajuste o caminho conforme necessário
 
 const app = express();
 const PORT = 5500; 
@@ -34,9 +32,7 @@ app.use(express.static(path.join(__dirname, 'frontend')));
 const upload = multer({ dest: 'uploads/' });
 
 // Usando o roteador de doações
-doacoesRouter.then(router => {
-    app.use('/doacoes', router.default);
-});
+app.use('/doacoes', doacoes); // Usando o roteador diretamente
 
 // Rota principal
 app.get('/', (req, res) => {
@@ -47,11 +43,3 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
-
-app.use(express.static('frontend', {
-  setHeaders: (res, path) => {
-    if (path.endsWith('.js')) {
-      res.set("Content-Type", "text/javascript");
-    }
-  }
-}));
