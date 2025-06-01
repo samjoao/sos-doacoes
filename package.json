@@ -1,4 +1,10 @@
 {
+  
+  "engines": {
+    "node": "20.16.0"
+  },
+
+
   "name": "sos-doacoes",
   "version": "1.0.0",
   "main": "index.js",
