@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import multer from 'multer';
-import db from './db..js'; // Ajuste o caminho conforme necessário
+import db from '../db.js'; // Ajuste o caminho conforme necessário
 
 const router = Router();
 const upload = multer({ dest: 'uploads/' });
