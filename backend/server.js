@@ -1,37 +1,48 @@
-const express = require('express');
-const multer = require('multer');
-const path = require('path');
-const db = require('./db'); // Assuming you have a db module for connection
+import express from 'express';
+import multer from 'multer';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import sqlite3 from 'sqlite3';
 
-const router = express.Router();
+// Para obter o diretório atual
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const doacoesRouter = import('./backend/routes/doacoes.js'); // Ajuste o caminho conforme necessário
+
+const app = express();
+const PORT = 5500; 
+
+// Configuração do banco de dados
+const db = new sqlite3.Database(path.join(__dirname, 'backend/sosdoacoes.db'), (err) => {
+    if (err) {
+        console.error('Erro ao conectar ao banco de dados:', err.message);
+    } else {
+        console.log('Conectado ao banco de dados SQLite.');
+    }
+});
+
+// Middleware para analisar o corpo das requisições
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Middleware para servir arquivos estáticos
+app.use(express.static(path.join(__dirname, 'frontend')));
+
+// Configuração do multer para upload de arquivos
 const upload = multer({ dest: 'uploads/' });
 
-// Cadastrar doações
-router.post('/', upload.single('imagem'), async (req, res) => {
-    const { categoria, estado, alimenticio, descricao } = req.body;
-    const imagem = req.file ? req.file.filename : null;
-
-    try {
-        await db.run(
-            `INSERT INTO doacoes (imagem, categoria, estado, alimenticio, descricao) VALUES (?, ?, ?, ?, ?)`,
-            [imagem, categoria, estado, alimenticio, descricao]
-        );
-        res.status(201).json({ message: 'Doação cadastrada com sucesso' });
-    } catch (err) {
-        console.error(err);
-        res.status(400).json({ message: 'Erro ao cadastrar doação' });
-    }
+// Usando o roteador de doações
+doacoesRouter.then(router => {
+    app.use('/doacoes', router.default);
 });
 
-// Listar doações
-router.get('/', async (req, res) => {
-    try {
-        const rows = await db.all('SELECT * FROM doacoes');
-        res.json(rows);
-    } catch (err) {
-        console.error(err);
-        res.status(400).json({ message: 'Erro ao listar doações' });
-    }
+// Rota principal
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/index.html'));
 });
 
-module.exports = router;
+// Iniciar o servidor
+app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+});

@@ -1,3 +1,5 @@
+import { URL } from 'url';
+
 const apiUrl = 'http://localhost:3000';
 
 // Login
@@ -82,35 +84,11 @@ if (cadastroForm) {
 }
 
 // No evento de submit do login
-if (res.ok) {
-  // Supondo que o servidor retorne os dados do usuário em 'result.user'
-  localStorage.setItem('usuarioLogado', JSON.stringify(result.user));
-  alert('Login bem-sucedido');
-  window.location.href = 'doacoes.html';
-} else {
-  alert(result.message);
-}
+// Removido, pois não é necessário
 
 const loginData = {
   username: "João Silva",
   password: "123456"
 };
 
-fetch('http://localhost:3000/api/login', {
-  method: 'POST',
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(loginData)
-})
-.then(res => res.json())
-.then(json => {
-  if(json.token) {
-    // salvar token para autenticação futura
-    localStorage.setItem('token', json.token);
-    alert('Login realizado com sucesso!');
-  } else {
-    alert('Falha no login: ' + json.message);
-  }
-})
-.catch(err => {
-  alert('Erro na requisição: ' + err.message);
-});
+// Removido, pois não é necessário
