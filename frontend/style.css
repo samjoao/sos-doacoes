@@ -86,6 +86,7 @@ main {
   line-height: 1.6;
 }
 
+/* Button */
 .btn-primary {
   display: inline-block;
   margin-top: 1.5rem;
@@ -105,10 +106,9 @@ main {
 .btn-primary:focus-visible {
   background-color: #c94a36;
   box-shadow: 0 10px 32px rgba(201, 74, 54, 1);
-  outline: none;
 }
 
-/* Features section */
+/* Feature section */
 .features {
   display: flex;
   justify-content: space-between;
@@ -129,16 +129,9 @@ main {
   font-size: 1.05rem;
   color: #264653;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: default;
 }
 
-.feature-item:hover,
-.feature-item:focus-within {
-  transform: translateY(-10px);
-  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.3);
-}
-
-/* Forms - login, cadastro, doações */
+/* Forms */
 form {
   background-color: white;
   max-width: 600px;
@@ -149,11 +142,6 @@ form {
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
-  transition: box-shadow 0.3s ease;
-}
-
-form:hover {
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
 }
 
 .input-group {
@@ -168,55 +156,9 @@ input, select, textarea, button {
   border-radius: 14px;
   border: 2px solid #2a9d8f;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  font-weight: 700;
-  font-family: inherit;
   width: 100%;
   color: #264653;
   background-color: #fcfcfc;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: #828282;
-  font-weight: 500;
-}
-
-input:hover,
-select:hover,
-textarea:hover,
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: #e76f51;
-  outline: none;
-  box-shadow: 0 0 9px #e76f51b5;
-}
-
-textarea {
-  resize: vertical;
-  min-height: 110px;
-}
-
-button {
-  background-color: #e76f51;
-  border: none;
-  color: white;
-  padding: 16px 0;
-  border-radius: 20px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(231, 111, 81, 0.9);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  transition: background-color 0.3s, box-shadow 0.3s ease;
-  user-select: none;
-}
-
-button:hover,
-button:focus-visible {
-  background-color: #c94a36;
-  box-shadow: 0 12px 36px rgba(201, 74, 54, 1);
-  outline: none;
 }
 
 /* Validation messages */
@@ -228,7 +170,7 @@ button:focus-visible {
   font-weight: 600;
 }
 
-/* Signup text below forms */
+/* Signup text */
 .signup-text {
   text-align: center;
   font-size: 0.9rem;
@@ -240,17 +182,9 @@ button:focus-visible {
   color: #e76f51;
   text-decoration: none;
   font-weight: 700;
-  transition: color 0.3s ease;
 }
 
-.signup-text a:hover,
-.signup-text a:focus-visible {
-  color: #c94a36;
-  text-decoration: underline;
-  outline: none;
-}
-
-/* Login-wrapper specific (for login and cadastro pages) */
+/* Login-wrapper */
 .login-wrapper {
   background: rgba(255, 255, 255, 0.12);
   padding: 50px 40px;
@@ -262,31 +196,13 @@ button:focus-visible {
   text-align: center;
 }
 
-.login-box h1 {
-  font-weight: 900;
-  font-size: 3rem;
-  margin-bottom: 8px;
-  color: #2a9d8f;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-.login-box .tagline {
-  font-style: italic;
-  margin-bottom: 30px;
-  font-size: 1.1rem;
-  color: #317873;
-  font-weight: 700;
-}
-
-/* Lista de Doações */
+/* List of Donations */
 #listaDoacoes {
   max-width: 900px;
   margin: 3rem auto 5rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
-  padding: 0 1rem;
 }
 
 #listaDoacoes > div {
@@ -299,15 +215,6 @@ button:focus-visible {
   align-items: center;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  user-select: none;
-  position: relative;
-}
-
-#listaDoacoes > div:hover,
-#listaDoacoes > div:focus-within {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
 }
 
 #listaDoacoes img {
@@ -315,35 +222,9 @@ button:focus-visible {
   height: 240px;
   object-fit: cover;
   border-radius: 20px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
-  transition: transform 0.3s ease;
 }
 
-#listaDoacoes > div:hover img {
-  transform: scale(1.07);
-}
-
-#listaDoacoes h4 {
-  color: #2a9d8f;
-  margin-bottom: 0.35rem;
-  font-weight: 800;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 1.3px;
-  user-select: text;
-}
-
-#listaDoacoes p {
-  color: #555;
-  font-size: 1.05rem;
-  margin-bottom: 0.6rem;
-  text-align: center;
-  line-height: 1.5;
-  user-select: text;
-}
-
-/* Badge para itens reservados */
+/* Badge for reserved items */
 #listaDoacoes .reservado-badge {
   position: absolute;
   top: 18px;
@@ -354,12 +235,9 @@ button:focus-visible {
   padding: 7px 14px;
   border-radius: 24px;
   font-size: 0.85rem;
-  text-transform: uppercase;
-  box-shadow: 0 3px 10px rgba(231, 111, 81, 0.8);
-  user-select: none;
 }
 
-/* Mensagem feedback */
+/* Message feedback */
 .message-box {
   max-width: 600px;
   margin: 1.5rem auto;
@@ -368,19 +246,14 @@ button:focus-visible {
   text-align: center;
   font-weight: 700;
   font-size: 1.12rem;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
-  user-select: none;
-  cursor: default;
 }
 
-.message-box.success {
-  background-color: #2a9d8f;
-  color: #a0d8d8;
-}
-
-.message-box.error {
-  background-color: #e76f51;
-  color: #fff0f0;
+/* Custom CSS */
+.custom-class {
+  background-color: rgba(0, 0, 0, 0.1); /* Example of new style */
+  border: 2px solid #2a9d8f;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 /* Footer */
@@ -391,28 +264,18 @@ footer {
   padding: 1.8rem 1rem;
   font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  margin-top: auto;
 }
 
-/* Responsividade */
+/* Responsiveness */
 @media (max-width: 700px) {
   .features {
     flex-direction: column;
     gap: 2.5rem;
   }
 
-  .feature-item {
-    width: 100%;
-  }
-
   #listaDoacoes {
     grid-template-columns: 1fr;
     margin: 1rem;
-  }
-
-  #listaDoacoes img {
-    height: 180px;
   }
 
   form, .login-wrapper {

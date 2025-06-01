@@ -1,22 +1,37 @@
 const express = require('express');
-const cors = require('cors');
+const multer = require('multer');
 const path = require('path');
-const bodyParser = require('body-parser');
-const { db } = require('./db');
-const authRoutes = require('./routes/auth');
-const doacoesRoutes = require('./routes/doacoes');
+const db = require('./db'); // Assuming you have a db module for connection
 
-const app = express();
-const PORT = 3000;
+const router = express.Router();
+const upload = multer({ dest: 'uploads/' });
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Cadastrar doações
+router.post('/', upload.single('imagem'), async (req, res) => {
+    const { categoria, estado, alimenticio, descricao } = req.body;
+    const imagem = req.file ? req.file.filename : null;
 
-app.use('/auth', authRoutes);
-app.use('/doacoes', doacoesRoutes);
-
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+    try {
+        await db.run(
+            `INSERT INTO doacoes (imagem, categoria, estado, alimenticio, descricao) VALUES (?, ?, ?, ?, ?)`,
+            [imagem, categoria, estado, alimenticio, descricao]
+        );
+        res.status(201).json({ message: 'Doação cadastrada com sucesso' });
+    } catch (err) {
+        console.error(err);
+        res.status(400).json({ message: 'Erro ao cadastrar doação' });
+    }
 });
+
+// Listar doações
+router.get('/', async (req, res) => {
+    try {
+        const rows = await db.all('SELECT * FROM doacoes');
+        res.json(rows);
+    } catch (err) {
+        console.error(err);
+        res.status(400).json({ message: 'Erro ao listar doações' });
+    }
+});
+
+module.exports = router;

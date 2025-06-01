@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postagens de Doações</title>
+</head>
+<body>
+    <h1>Postagens de Doações</h1>
+    <div id="doacoesList"></div>
+&nbsp;
+&nbsp;
+
+    <script src="scripts.js"></script>
+    <script>
+        fetch('/doacoes') // Faz uma requisição para a nova rota
+            .then(response => response.json())
+            .then(data => {
+                const listContainer = document.getElementById('doacoesList');
+                data.forEach(doacao => {
+                    const item = document.createElement('div');
+                    item.innerHTML = `<p>Categoria: ${doacao.categoria}, Estado: ${doacao.estado}, Alimento: ${doacao.alimenticio}, Descrição: ${doacao.descricao}</p>`;
+                    listContainer.appendChild(item);
+                });
+            })
+            .catch(error => console.error('Erro:', error));
+    </script>
+</body>
+</html>
