@@ -4,7 +4,7 @@ console.log(myURL.pathname); // '/path'
 console.log(myURL.search); // '?name=value'
 
 
-const apiUrl = 'http://localhost:3000';
+const apiUrl = 'http://localhost:5500';
 
 // Login
 const loginForm = document.getElementById('loginForm');

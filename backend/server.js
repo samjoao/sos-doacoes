@@ -1,5 +1,6 @@
 import express from 'express';
-import multer from 'multer';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sqlite3 from 'sqlite3';
@@ -13,7 +14,7 @@ const app = express();
 const PORT = 5500; 
 
 // Configuração do banco de dados
-const db = new sqlite3.Database(path.join(__dirname, 'backend/sosdoacoes.db'), (err) => {
+const db = new sqlite3.Database(path.join(__dirname, 'sosdoacoes.db'), (err) => {
     if (err) {
         console.error('Erro ao conectar ao banco de dados:', err.message);
     } else {
@@ -22,21 +23,28 @@ const db = new sqlite3.Database(path.join(__dirname, 'backend/sosdoacoes.db'), (
 });
 
 // Middleware para analisar o corpo das requisições
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Middleware para servir arquivos estáticos
-app.use(express.static(path.join(__dirname, 'frontend')));
-
-// Configuração do multer para upload de arquivos
-const upload = multer({ dest: 'uploads/' });
 
 // Usando o roteador de doações
 app.use('/doacoes', doacoes); // Usando o roteador diretamente
 
+// Rota de cadastro
+app.post('/auth/cadastro', (req, res) => {
+    const { nome, email, senha } = req.body; // Supondo que você esteja recebendo esses campos
+
+    // Simulação de sucesso
+    if (nome && email && senha) {
+        return res.status(201).json({ message: 'Cadastro realizado com sucesso!' });
+    } else {
+        return res.status(400).json({ message: 'Dados inválidos!' });
+    }
+});
+
 // Rota principal
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend/index.html'));
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 // Iniciar o servidor
