@@ -1,7 +1,7 @@
-const myURL = new URL('https://example.com/path?name=value');
+/*const myURL = new URL('https://example.com/path?name=value');
 console.log(myURL.hostname); // 'example.com'
 console.log(myURL.pathname); // '/path'
-console.log(myURL.search); // '?name=value'
+console.log(myURL.search); // '?name=value'*/
 
 
 const apiUrl = 'http://localhost:5500';
@@ -75,15 +75,20 @@ if (cadastroForm) {
     const data = Object.fromEntries(formData.entries());
     
     const res = await fetch(`${apiUrl}/auth/cadastro`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const result = await res.json();
-    alert(result.message);
-    if (res.ok) {
-      window.location.href = 'login.html';
-    }
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data),
+});
+
+if (!res.ok) {
+  const errorText = await res.text();
+  alert(`Erro: ${res.status} - ${errorText}`);
+} else {
+  const result = await res.json();
+  alert(result.message);
+  window.location.href = 'login.html';
+}
+
   });
 }
 
