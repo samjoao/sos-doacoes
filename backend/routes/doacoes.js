@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import multer from 'multer';
-import db from '../db.js'; // Ajuste o caminho conforme necessário
+import path from 'path';
+import db from '../db.js';
 
 const router = Router();
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: path.join(process.cwd(), 'uploads/') });
 
-// Cadastrar doações
 router.post('/', upload.single('imagem'), (req, res) => {
     const { categoria, estado, alimenticio, descricao } = req.body;
     const imagem = req.file ? req.file.filename : null;
@@ -13,7 +13,7 @@ router.post('/', upload.single('imagem'), (req, res) => {
     db.run(
         `INSERT INTO doacoes (imagem, categoria, estado, alimenticio, descricao) VALUES (?, ?, ?, ?, ?)`,
         [imagem, categoria, estado, alimenticio, descricao],
-        function(err) {
+        function (err) {
             if (err) {
                 return res.status(400).json({ message: 'Erro ao cadastrar doação' });
             }
@@ -22,7 +22,6 @@ router.post('/', upload.single('imagem'), (req, res) => {
     );
 });
 
-// Listar doações
 router.get('/', (req, res) => {
     db.all(`SELECT * FROM doacoes`, [], (err, rows) => {
         if (err) {
@@ -32,4 +31,4 @@ router.get('/', (req, res) => {
     });
 });
 
-export default router; // Exportando o roteador
+export default router;
