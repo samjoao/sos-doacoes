@@ -49,11 +49,12 @@
     <h2>Doações Disponíveis</h2>
     <div id="listaDoacoes"></div>
 
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
     <script>
         const categoriaSelect = document.getElementById('categoria');
         const descricaoContainer = document.getElementById('descricaoContainer');
 
+        // Exibe o campo de descrição personalizada se a categoria "Outro" for selecionada
         categoriaSelect.addEventListener('change', function() {
             if (this.value === 'outro') {
                 descricaoContainer.style.display = 'block';
@@ -63,11 +64,44 @@
             }
         });
 
-        document.getElementById('doacaoForm').addEventListener('submit', function(e) {
+        // Lógica para o envio do formulário de doação
+        document.getElementById('doacaoForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            // Aqui você pode adicionar a lógica para enviar os dados do formulário
-            alert('Doação cadastrada com sucesso!');
+            const formData = new FormData(this);
+
+            const res = await fetch('http://localhost:5500/doacoes', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const result = await res.json();
+            alert(result.message);
+            loadDoacoes(); // Recarrega a lista de doações após o cadastro
+            this.reset(); // Reseta o formulário após o envio
         });
+
+        // Função para carregar doações
+        async function loadDoacoes() {
+            const res = await fetch('http://localhost:5500/doacoes');
+            const doacoes = await res.json();
+            const lista = document.getElementById('listaDoacoes');
+            lista.innerHTML = ''; // Limpa a lista antes de adicionar novas doações
+
+            doacoes.forEach((item) => {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <img src="http://localhost:5500/uploads/${item.imagem}" alt="${item.descricao}" style="width: 100%; height: auto;"/>
+                    <h4>${item.categoria}</h4>
+                    <p><strong>Estado:</strong> ${item.estado}</p>
+                    <p><strong>Alimentício:</strong> ${item.alimenticio}</p>
+                    <p>${item.descricao}</p>
+                `;
+                lista.appendChild(div);
+            });
+        }
+
+        // Carrega as doações ao carregar a página
+        loadDoacoes();
     </script>
 </body>
 </html>

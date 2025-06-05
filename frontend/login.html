@@ -24,7 +24,7 @@
         </div>
         <div class="input-group">
           <label for="tipo">Tipo de usuário</label>
-          <select id="tipo" name="tipo" required aria-required="true" >
+          <select id="tipo" name="tipo" required aria-required="true">
             <option value="" disabled selected>Selecione o tipo</option>
             <option value="pessoa">Pessoa</option>
             <option value="ong">ONG</option>
@@ -39,31 +39,7 @@
     </div>
   </div>
 
-  <script>
-    // Validação simples de formulário no frontend com feedback visual
-    const form = document.getElementById('loginForm');
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      let valid = true;
-
-      [...form.elements].forEach(input => {
-        const message = input.parentElement.querySelector('.validation-message');
-        if (input.required && !input.value.trim()) {
-          if(message) message.textContent = 'Este campo é obrigatório.';
-          valid = false;
-        } else if(input.minLength > 0 && input.value.length < input.minLength) {
-          if(message) message.textContent = `Mínimo ${input.minLength} caracteres.`;
-          valid = false;
-        } else {
-          if(message) message.textContent = '';
-        }
-      });
-
-      if(valid){
-        form.submit();
-      }
-    });
-  </script>
+  <!-- Incluindo o script.js -->
+  <script src="scripts.js"></script>
 </body>
 </html>
-

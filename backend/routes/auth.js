@@ -4,6 +4,16 @@ import db from '../db.js';
 
 const router = Router();
 
+router.post('/login', (req, res) => {
+    const { email, senha } = req.body;
+    db.get(`SELECT * FROM usuarios WHERE email = ?`, [email], (err, user) => {
+        if (err || !user || !bcrypt.compareSync(senha, user.senha)) {
+            return res.status(401).json({ message: 'Email ou senha inválidos' });
+        }
+        res.json({ user });
+    });
+});
+
 router.post('/cadastro', (req, res) => {
     const { nome, email, senha, tipo } = req.body;
     const hashedPassword = bcrypt.hashSync(senha, 10);
@@ -18,16 +28,6 @@ router.post('/cadastro', (req, res) => {
             res.status(201).json({ message: 'Usuário cadastrado com sucesso' });
         }
     );
-});
-
-router.post('/login', (req, res) => {
-    const { email, senha } = req.body;
-    db.get(`SELECT * FROM usuarios WHERE email = ?`, [email], (err, user) => {
-        if (err || !user || !bcrypt.compareSync(senha, user.senha)) {
-            return res.status(401).json({ message: 'Email ou senha inválidos' });
-        }
-        res.json({ user });
-    });
 });
 
 export default router;

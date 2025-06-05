@@ -1,48 +1,6 @@
-/*const myURL = new URL('https://example.com/path?name=value');
-console.log(myURL.hostname); // 'example.com'
-console.log(myURL.pathname); // '/path'
-console.log(myURL.search); // '?name=value'*/
-
-
 const apiUrl = 'http://localhost:5500';
 
-// Login
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-    loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const formData = new FormData(loginForm);
-        const data = Object.fromEntries(formData.entries());
-
-        const res = await fetch(`${apiUrl}/auth/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        });
-        const result = await res.json();
-        alert(result.message);
-    });
-}
-
-// Cadastro de doações
-const doacaoForm = document.getElementById('doacaoForm');
-if (doacaoForm) {
-    doacaoForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const formData = new FormData(doacaoForm);
-
-        const res = await fetch(`${apiUrl}/doacoes`, {
-            method: 'POST',
-            body: formData,
-        });
-
-        const result = await res.json();
-        alert(result.message);
-        loadDoacoes();
-    });
-}
-
-// Carregar doações
+// Função para carregar doações
 async function loadDoacoes() {
     const res = await fetch(`${apiUrl}/doacoes`);
     const doacoes = await res.json();
@@ -63,41 +21,77 @@ async function loadDoacoes() {
     }
 }
 
+// Login
+const loginForm = document.getElementById('loginForm');
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(loginForm);
+        const data = Object.fromEntries(formData.entries());
+
+        const res = await fetch(`${apiUrl}/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+        
+        if (res.ok) {
+            // Se o login for bem-sucedido, redireciona para a nova página de doações
+            window.location.href = 'postdoacoes.html'; // Altere para o nome da sua nova página
+        } else {
+            // Se houver um erro, exibe a mensagem
+            alert(result.message);
+        }
+    });
+}
+
+// Cadastro de doações
+const doacaoForm = document.getElementById('doacaoForm');
+if (doacaoForm) {
+    doacaoForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(doacaoForm);
+
+        const res = await fetch(`${apiUrl}/doacoes`, {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await res.json();
+        alert(result.message);
+        loadDoacoes(); // Recarrega a lista de doações após o cadastro
+        doacaoForm.reset(); // Reseta o formulário após o envio
+    });
+}
+
+// Carregar doações ao carregar a página
 if (document.getElementById('listaDoacoes')) {
     loadDoacoes();
 }
 
+// Cadastro de usuários
 const cadastroForm = document.getElementById('cadastroForm');
 if (cadastroForm) {
-  cadastroForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(cadastroForm);
-    const data = Object.fromEntries(formData.entries());
-    
-    const res = await fetch(`${apiUrl}/auth/cadastro`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(data),
-});
+    cadastroForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(cadastroForm);
+        const data = Object.fromEntries(formData.entries());
+        
+        const res = await fetch(`${apiUrl}/auth/cadastro`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
 
-if (!res.ok) {
-  const errorText = await res.text();
-  alert(`Erro: ${res.status} - ${errorText}`);
-} else {
-  const result = await res.json();
-  alert(result.message);
-  window.location.href = 'login.html';
+        if (!res.ok) {
+            const errorText = await res.text();
+            alert(`Erro: ${res.status} - ${errorText}`);
+        } else {
+            const result = await res.json();
+            alert(result.message);
+            window.location.href = 'login.html'; // Redireciona para a página de login após cadastro
+        }
+    });
 }
-
-  });
-}
-
-// No evento de submit do login
-// Removido, pois não é necessário
-
-const loginData = {
-  username: "João Silva",
-  password: "123456"
-};
-
-// Removido, pois não é necessário
