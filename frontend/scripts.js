@@ -101,13 +101,6 @@ if (doacaoForm) {
             alert('Você precisa estar logado para cadastrar uma doação.');
             return;
         }
-        
-        // --- ESTE BLOCO FOI REMOVIDO PARA PERMITIR CADASTRO POR 'PESSOA' ---
-        // if (currentUser && currentUser.tipo !== 'pessoa') {
-        //     alert('Apenas pessoas físicas podem cadastrar doações.');
-        //     return;
-        // }
-        // ------------------------------------------------------------------
 
         const res = await fetch(`${apiUrl}/doacoes`, {
             method: 'POST',
@@ -238,10 +231,8 @@ async function loadDoacoes() {
                 div.innerHTML = `
                     <img src="${apiUrl}/uploads/${item.imagem}" alt="${item.descricao}" />
                     ${statusHtml}
-                    <h4>${item.categoria}</h4>
-                    <p><strong>Estado:</strong> ${item.estado}</p>
+                    <h2>${item.descricao}</h2> <h4>${item.categoria}</h4> <p><strong>Estado:</strong> ${item.estado}</p>
                     <p><strong>Alimentício:</strong> ${item.alimenticio === 'sim' ? 'Sim' : 'Não'}</p>
-                    <p>${item.descricao}</p>
                     <div class="doacao-buttons"> ${buttonHtml}
                         ${removeButtonHtml}
                     </div>
