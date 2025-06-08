@@ -5,6 +5,7 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import db from './db.js';
+import session from 'express-session';
 
 import doacoes from './routes/doacoes.js';
 import authRoutes from './routes/auth.js';
@@ -17,22 +18,33 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5500', // Permita o frontend acessar
+    credentials: true // Importante para enviar cookies de sessão
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Configuração da sessão
+app.use(session({
+    secret: 'sua_chave_secreta_muito_segura', // Use uma string longa e aleatória em produção
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // 'secure: true' em produção (HTTPS)
+}));
+
 // Servindo os arquivos estáticos do frontend
 app.use(express.static(path.join(__dirname, '../frontend')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // Rotas
 app.use('/auth', authRoutes);
 app.use('/doacoes', doacoes);
 
 // Página inicial (fallback)
-app.get(/(.*)/, (req, res) => {
+/*app.get(/(.*)/, (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
-});
+});*/
 
 // Listar rotas registradas (debug)
 app.listen(PORT, () => {

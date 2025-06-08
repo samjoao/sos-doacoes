@@ -5,29 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>S.O.S.Doações - Marketplace de Doações</title>
   <link rel="stylesheet" href="style.css" />
-  <script>
-    // Controlar acesso à aba Doações no header, mostrar apenas se usuário logado
-    function verificarLoginNoHeader() {
-      const usuario = localStorage.getItem('usuarioLogado');
-      const doacoesLink = document.getElementById('navDoacoes');
-      if (usuario) {
-        doacoesLink.style.display = 'inline-block';
-      } else {
-        doacoesLink.style.display = 'none';
-      }
-    }
-    window.addEventListener('DOMContentLoaded', verificarLoginNoHeader);
-  </script>
-</head>
+  </head>
 <body>
   <header>
     <h1>S.O.S.Doações</h1>
     <nav>
       <a href="index.html" aria-label="Página inicial">Início</a>
-      <a href="login.html" aria-label="Página de Login">Login</a>
-      <a href="cadastro.html" aria-label="Página de Cadastro">Cadastro</a>
-      <a href="doacoes.html" aria-label="Página de Doações" id="navDoacoes" style="display:none;">Doações</a>
-      <a href="postdoacoes.html">Postagens de Doações</a>
+      <a href="postdoacoes.html" id="postDoacoesLink" aria-label="Ver Doações">Ver Doações</a>
+      <a href="doacoes.html" id="doacoesLink" style="display:none;" aria-label="Cadastrar Doação">Cadastrar Doação</a>
+      <a href="login.html" id="loginLink" aria-label="Página de Login">Login</a>
+      <a href="cadastro.html" id="registerLink" aria-label="Página de Cadastro">Cadastro</a>
+      <a href="#" id="logoutLink" style="display:none;" aria-label="Sair">Sair</a>
     </nav>
   </header>
 
@@ -62,7 +50,6 @@
     <p>© 2024 S.O.S.Doações - Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Incluindo o script.js -->
   <script src="scripts.js"></script>
 
 </body>

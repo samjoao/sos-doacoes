@@ -24,7 +24,13 @@ db.serialize(() => {
       senha TEXT NOT NULL,
       tipo TEXT NOT NULL CHECK(tipo IN ('pessoa', 'ong'))
     );
-  `);
+  `, (err) => {
+    if (err) {
+      console.error('Erro ao criar tabela usuarios:', err);
+    } else {
+      console.log('Tabela usuarios criada ou já existe.');
+    }
+  });
 
   db.run(`
     CREATE TABLE IF NOT EXISTS doacoes (
@@ -33,13 +39,20 @@ db.serialize(() => {
       categoria TEXT,
       estado TEXT,
       alimenticio TEXT,
-      descricao TEXT,
+      descricao TEXT UNIQUE,
+      -- ADICIONADO: Coluna para o ID da ONG que postou a doação
+      id_ong INTEGER NOT NULL,
       reservado_por INTEGER,
+      FOREIGN KEY(id_ong) REFERENCES usuarios(id), -- Chave estrangeira para o criador
       FOREIGN KEY(reservado_por) REFERENCES usuarios(id)
     );
-  `);
+  `, (err) => {
+    if (err) {
+      console.error('Erro ao criar tabela doacoes:', err);
+    } else {
+      console.log('Tabela doacoes criada ou já existe.');
+    }
+  });
 });
 
-export default db; // Exportação padrão
-
-   
+export default db;

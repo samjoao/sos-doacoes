@@ -4,103 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Postagens de Doações - S.O.S. Doações</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link para o seu CSS -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .doacao-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .doacao-item {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            margin: 10px 0;
-            background: #f9f9f9;
-        }
-        .doacao-item h2 {
-            margin: 0 0 10px;
-            color: #007BFF;
-        }
-        .doacao-item p {
-            margin: 5px 0;
-        }
-        .doacao-item strong {
-            color: #555;
-        }
-        .button-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .button-container button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button-container button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Postagens de Doações</h1>
-    
-    <div class="button-container">
-        <button onclick="window.location.href='doacoes.html'">Cadastrar Doação</button>
-    </div>
+    <header>
+        <h1>S.O.S. Doações</h1>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="postdoacoes.html" id="postDoacoesLink">Ver Doações</a>
+            <a href="doacoes.html" id="doacoesLink" style="display: none;">Cadastrar Doação</a>
+            <a href="login.html" id="loginLink">Login</a>
+            <a href="cadastro.html" id="registerLink">Cadastro</a>
+            <a href="#" id="logoutLink" style="display: none;">Sair</a>
+        </nav>
+    </header>
 
-    <div class="doacao-container" id="doacoesList"></div>
+    <main>
+        <h1>Doações Disponíveis</h1>
+        <div id="listarDoacoes">
+            </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 S.O.S. Doações. Todos os direitos reservados.</p>
+    </footer>
 
     <script src="scripts.js"></script>
-    <script>
-        // Função para carregar doações
-        async function loadDoacoes() {
-            try {
-                const response = await fetch('http://localhost:5500/doacoes'); // Altere a URL conforme necessário
-                const data = await response.json();
-                const listContainer = document.getElementById('doacoesList');
-
-                if (data.length === 0) {
-                    listContainer.innerHTML = '<p>Nenhuma doação disponível no momento.</p>';
-                } else {
-                    data.forEach(doacao => {
-                        const item = document.createElement('div');
-                        item.classList.add('doacao-item');
-                        item.innerHTML = `
-                            <h2>${doacao.categoria}</h2>
-                            <p><strong>Estado:</strong> ${doacao.estado}</p>
-                            <p><strong>Alimentício:</strong> ${doacao.alimenticio}</p>
-                            <p><strong>Descrição:</strong> ${doacao.descricao}</p>
-                        `;
-                        listContainer.appendChild(item);
-                    });
-                }
-            } catch (error) {
-                console.error('Erro:', error);
-                const listContainer = document.getElementById('doacoesList');
-                listContainer.innerHTML = '<p>Erro ao carregar as doações. Tente novamente mais tarde.</p>';
-            }
-        }
-
-        // Carrega as doações ao carregar a página
-        loadDoacoes();
-    </script>
 </body>
 </html>

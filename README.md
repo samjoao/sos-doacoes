@@ -1,4 +1,4 @@
 # sos-doacoes
 .
 //node backend/server.js
-//http://localhost:5500/cadastro.html
+//http://localhostcadastro.html:5500/

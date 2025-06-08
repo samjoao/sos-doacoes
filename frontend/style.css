@@ -1,285 +1,509 @@
-/* Reset global */
+/* ==================================== */
+/* GLOBAL & RESET                       */
+/* ==================================== */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Body and html */
 body, html {
-  min-height: 100vh;
-  background-color: #f4f4f4;
-  color: #333;
+    min-height: 100vh; /* Garante que o body ocupa a altura total da viewport */
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-/* Header */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ==================================== */
+/* HEADER & NAV                         */
+/* ==================================== */
 header {
-  background-color: #2a9d8f;
-  color: white;
-  padding: 1.2rem 2rem;
-  text-align: center;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+    background-color: #2a9d8f;
+    color: white;
+    padding: 1.2rem 2rem;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 header h1 {
-  font-size: 2.5rem;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 0;
 }
 
 nav {
-  margin-top: 0.75rem;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
+    margin-top: 0.75rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
 }
 
 nav a {
-  color: white;
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 nav a:hover,
 nav a:focus-visible {
-  background-color: #e76f51;
-  box-shadow: 0 0 12px #e76f51cc;
-  outline: none;
+    background-color: #e76f51;
+    box-shadow: 0 0 12px #e76f51cc;
+    outline: none;
 }
 
-/* Main content */
+/* ==================================== */
+/* MAIN CONTENT                         */
+/* ==================================== */
 main {
-  max-width: 960px;
-  margin: 3rem auto 4rem;
-  padding: 0 1rem;
-  text-align: center;
+    max-width: 960px;
+    margin: 3rem auto 4rem;
+    padding: 0 1rem;
+    text-align: center;
 }
 
-/* Hero section */
+/* ==================================== */
+/* HERO SECTION                         */
+/* ==================================== */
 .hero {
-  margin-bottom: 3rem;
+    margin-bottom: 3rem;
 }
 
 .hero h2 {
-  font-size: 2.75rem;
-  font-weight: 700;
-  color: #264653;
-  text-shadow: 1px 1px 3px rgba(38, 70, 83, 0.5);
-  margin-bottom: 1rem;
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: #264653;
+    text-shadow: 1px 1px 3px rgba(38, 70, 83, 0.5);
+    margin-bottom: 1rem;
 }
 
 .hero p {
-  font-size: 1.2rem;
-  color: #555;
-  max-width: 700px;
-  margin: 0 auto;
-  font-weight: 600;
-  line-height: 1.6;
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 600;
+    line-height: 1.6;
 }
 
-/* Button */
+/* ==================================== */
+/* BUTTONS                              */
+/* ==================================== */
+/* Botão primário (para Hero, etc.) */
 .btn-primary {
-  display: inline-block;
-  margin-top: 1.5rem;
-  background-color: #e76f51;
-  color: white;
-  font-weight: 700;
-  font-size: 1.25rem;
-  padding: 15px 36px;
-  border-radius: 16px;
-  text-decoration: none;
-  box-shadow: 0 8px 26px rgba(231, 111, 81, 0.9);
-  transition: background-color 0.3s, box-shadow 0.3s;
-  user-select: none;
+    display: inline-block;
+    margin-top: 1.5rem;
+    background-color: #e76f51;
+    color: white;
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 15px 36px;
+    border-radius: 16px;
+    text-decoration: none;
+    box-shadow: 0 8px 26px rgba(231, 111, 81, 0.9);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    user-select: none;
 }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-  background-color: #c94a36;
-  box-shadow: 0 10px 32px rgba(201, 74, 54, 1);
+    background-color: #c94a36;
+    box-shadow: 0 10px 32px rgba(201, 74, 54, 1);
 }
 
-/* Feature section */
+/* Botões gerais (como o "Cadastrar Doação") - usando .button-container button */
+.button-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.button-container button {
+    padding: 10px; /* Ajustado */
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+    background-color: #0056b3;
+}
+
+/* ==================================== */
+/* FEATURE SECTION                      */
+/* ==================================== */
 .features {
-  display: flex;
-  justify-content: space-between;
-  max-width: 900px;
-  margin: 0 auto 4rem;
-  gap: 2rem;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .feature-item {
-  background: white;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  border-radius: 20px;
-  padding: 2rem 1.8rem;
-  width: 280px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: #264653;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    border-radius: 20px;
+    padding: 2rem 1.8rem;
+    width: 280px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #264653;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Forms */
+/* ==================================== */
+/* FORMS                                */
+/* ==================================== */
 form {
-  background-color: white;
-  max-width: 600px;
-  margin: 2rem auto 3rem;
-  padding: 2.5rem 3rem;
-  border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
+    background-color: white;
+    max-width: 600px;
+    margin: 2rem auto 3rem;
+    padding: 2.5rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
 }
 
 .input-group {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
-input, select, textarea, button {
-  font-size: 1.1rem;
-  padding: 15px 20px;
-  border-radius: 14px;
-  border: 2px solid #2a9d8f;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  width: 100%;
-  color: #264653;
-  background-color: #fcfcfc;
+label { /* Adicionado estilo para as labels */
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #264653;
+}
+
+input, select, textarea {
+    font-size: 1.1rem;
+    padding: 15px 20px;
+    border-radius: 14px;
+    border: 2px solid #2a9d8f;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    color: #264653;
+    background-color: #fcfcfc;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #e76f51; /* Cor de foco mais vibrante */
+    box-shadow: 0 0 0 3px rgba(231, 111, 81, 0.3);
+}
+
+/* Adicionado este para o botão de submit do formulário */
+form button[type="submit"] {
+    font-size: 1.1rem;
+    padding: 15px 20px;
+    border-radius: 14px;
+    border: none;
+    background-color: #2a9d8f;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+form button[type="submit"]:hover {
+    background-color: #1a7c73;
 }
 
 /* Validation messages */
 .validation-message {
-  color: #ff4c4c;
-  font-size: 0.9rem;
-  min-height: 20px;
-  margin-top: 3px;
-  font-weight: 600;
+    color: #ff4c4c;
+    font-size: 0.9rem;
+    min-height: 20px;
+    margin-top: 3px;
+    font-weight: 600;
 }
 
 /* Signup text */
 .signup-text {
-  text-align: center;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #4a6e7f;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4a6e7f;
 }
 
 .signup-text a {
-  color: #e76f51;
-  text-decoration: none;
-  font-weight: 700;
+    color: #e76f51;
+    text-decoration: none;
+    font-weight: 700;
 }
 
 /* Login-wrapper */
 .login-wrapper {
-  background: rgba(255, 255, 255, 0.12);
-  padding: 50px 40px;
-  border-radius: 20px;
-  box-shadow: 0 0 40px rgb(38 70 83 / 0.42);
-  width: 380px;
-  margin: 6rem auto;
-  color: #264653;
-  text-align: center;
+    background: white; /* Cor sólida para melhor clareza */
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(38, 70, 83, 0.18); /* Sombra mais sutil */
+    width: 380px;
+    margin: 6rem auto;
+    color: #264653;
+    text-align: center;
 }
 
-/* List of Donations */
-#listaDoacoes {
-  max-width: 900px;
-  margin: 3rem auto 5rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
+/* ==================================== */
+/* LISTAGEM DE DOAÇÕES                  */
+/* ==================================== */
+/* Contêiner da lista de doações */
+#listarDoacoes {
+    max-width: 900px;
+    margin: 3rem auto 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajuste para melhor responsividade */
+    gap: 2.5rem;
+    padding: 0 1rem;
 }
 
-#listaDoacoes > div {
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.13);
-  padding: 1.25rem 1.75rem 1.85rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Item individual da doação */
+.doacao-item {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.13);
+    padding: 1.25rem 1.75rem 1.85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    justify-content: space-between; /* Distribui o espaço, empurrando os botões para baixo */
+    overflow: hidden;
+    position: relative; /* CRUCIAL: para o badge de reservado funcionar */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#listaDoacoes img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  border-radius: 20px;
+.doacao-item:hover { /* Efeito de hover para o card da doação */
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* Imagem dentro do item de doação */
+.doacao-item img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+}
+
+.doacao-item h4 {
+    margin: 0.5rem 0;
+    color: #2a9d8f;
+    font-size: 1.3rem;
+}
+
+.doacao-item p {
+    margin: 0.25rem 0;
+    text-align: center;
+    flex-grow: 1; /* Permite que o parágrafo ocupe o espaço disponível */
+}
+
+.doacao-item strong {
+    color: #264653;
+}
+
+/* CONTAINER PARA OS BOTÕES DENTRO DO ITEM DE DOAÇÃO */
+/* Permite que os botões fiquem lado a lado */
+.doacao-buttons {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
+    margin-top: 1rem; /* Espaçamento entre o conteúdo e os botões */
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que os botões quebrem a linha em telas menores */
+    width: 100%; /* Ocupa a largura total do card */
+}
+
+/* ESTILOS BASE PARA TODOS OS BOTÕES DE AÇÃO DA DOAÇÃO */
+.reservar-doacao-btn,
+.remove-doacao-btn,
+.reservada-btn,
+.reservada-por-voce-btn {
+    padding: 10px 15px;
+    font-size: 0.95rem; /* Ajustado para um tamanho que se encaixe bem */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: white; /* Cor do texto padrão para todos os botões de doação */
+    flex-shrink: 0; /* Impede que os botões encolham em telas pequenas */
+    flex-grow: 1; /* Permite que os botões se expandam para preencher o espaço disponível igualmente */
+    max-width: 180px; /* Limite de largura para evitar botões muito grandes */
+}
+
+/* Estilo específico para o botão de RESERVAR */
+.reservar-doacao-btn {
+    background-color: #2a9d8f; /* Cor primária */
+}
+
+.reservar-doacao-btn:hover {
+    background-color: #1a7c73; /* Um tom mais escuro */
+    transform: translateY(-2px);
+}
+
+/* Estilo para o botão de REMOVER */
+.remove-doacao-btn {
+    background-color: #dc3545; /* Cor vermelha para remover */
+}
+
+.remove-doacao-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* Estilo para botões desabilitados (Reservado / Reservada por você) */
+.reservada-btn,
+.reservada-por-voce-btn {
+    background-color: #cccccc; /* Cor cinza para desabilitado */
+    cursor: not-allowed; /* Altera o cursor para indicar que não é clicável */
+    opacity: 0.8; /* Torna-o um pouco transparente */
+}
+
+.reservada-btn:hover,
+.reservada-por-voce-btn:hover {
+    background-color: #bbbbbb; /* Um tom mais escuro no hover, mas ainda desabilitado */
+    transform: none; /* Remove o efeito de translateY no hover para desabilitados */
 }
 
 /* Badge for reserved items */
-#listaDoacoes .reservado-badge {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  background-color: #e76f51;
-  color: white;
-  font-weight: 800;
-  padding: 7px 14px;
-  border-radius: 24px;
-  font-size: 0.85rem;
+.reservado-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background-color: #e76f51;
+    color: white;
+    font-weight: 800;
+    padding: 7px 14px;
+    border-radius: 24px;
+    font-size: 0.85rem;
+    z-index: 5; /* Garante que o badge fique acima da imagem */
 }
 
 /* Message feedback */
 .message-box {
-  max-width: 600px;
-  margin: 1.5rem auto;
-  padding: 1rem 1.8rem;
-  border-radius: 14px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.12rem;
+    max-width: 600px;
+    margin: 1.5rem auto;
+    padding: 1rem 1.8rem;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.12rem;
 }
 
-/* Custom CSS */
+/* Custom CSS - pode ser removido se não for usado */
 .custom-class {
-  background-color: rgba(0, 0, 0, 0.1); /* Example of new style */
-  border: 2px solid #2a9d8f;
-  padding: 10px;
-  border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 2px solid #2a9d8f;
+    padding: 10px;
+    border-radius: 10px;
 }
 
-/* Footer */
+/* ==================================== */
+/* FOOTER                               */
+/* ==================================== */
 footer {
-  background-color: #2a9d8f;
-  color: white;
-  text-align: center;
-  padding: 1.8rem 1rem;
-  font-size: 0.95rem;
-  font-weight: 600;
+    background-color: #2a9d8f;
+    color: white;
+    text-align: center;
+    padding: 1.8rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 4rem;
 }
 
-/* Responsiveness */
+/* ==================================== */
+/* RESPONSIVENESS                       */
+/* ==================================== */
 @media (max-width: 700px) {
-  .features {
-    flex-direction: column;
-    gap: 2.5rem;
-  }
+    .features {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
 
-  #listaDoacoes {
-    grid-template-columns: 1fr;
-    margin: 1rem;
-  }
+    #listarDoacoes {
+        grid-template-columns: 1fr;
+        margin: 1rem;
+    }
 
-  form, .login-wrapper {
-    width: 90%;
-    margin: 2rem auto;
-  }
+    form, .login-wrapper {
+        width: 90%;
+        margin: 2rem auto;
+        padding: 1.5rem 2rem;
+    }
+
+    header {
+        padding: 1rem;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        font-size: 1rem;
+        padding: 12px 24px;
+    }
+
+    input, select, textarea, form button[type="submit"] {
+        font-size: 1rem;
+        padding: 12px 15px;
+    }
+
+    /* Em telas pequenas, faça os botões dentro de .doacao-buttons empilharem */
+    .doacao-buttons {
+        flex-direction: column;
+        align-items: center; /* Centraliza os botões empilhados */
+    }
+
+    .reservar-doacao-btn,
+    .remove-doacao-btn,
+    .reservada-btn,
+    .reservada-por-voce-btn {
+        width: 100%; /* Ocupa a largura total disponível no card */
+        max-width: 250px; /* Um max-width para não ficarem gigantes em cards maiores */
+    }
+}
+
+/* Ajuste para telas muito pequenas, se necessário */
+@media (max-width: 480px) {
+    form, .login-wrapper {
+        padding: 1rem 1.5rem;
+    }
 }
