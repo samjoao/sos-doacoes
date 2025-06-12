@@ -24,14 +24,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // --- ROTA PARA CADASTRAR DOAÇÃO (POST /doacoes) ---
-// Qualquer usuário AUTENTICADO (Pessoa ou ONG) pode cadastrar doações.
-// Removida a validação de tipo de usuário AQUI, pois o authenticateToken já garante que está logado.
+
 router.post('/', authenticateToken, upload.single('imagem'), (req, res) => {
     console.log('Backend: Rota de cadastro de doação POST chamada.');
     console.log('Backend: req.body:', req.body);
     console.log('Backend: req.file:', req.file);
-    // console.log('Backend: req.user (do token):', req.user); // Descomente para debug
-
+  
     const { categoria, estado, alimenticio, descricao, descricaoPersonalizada } = req.body;
     const imagem = req.file ? req.file.filename : null;
     const userId = req.user.id; // Pega o ID do usuário logado (Pessoa ou ONG) do token
@@ -47,16 +45,6 @@ router.post('/', authenticateToken, upload.single('imagem'), (req, res) => {
         return res.status(400).json({ message: 'Todos os campos são obrigatórios (imagem, categoria, estado, alimentício, descrição).' });
     }
 
-    // REMOVEMOS ESTE BLOCO DE CÓDIGO.
-    // Se o objetivo é que TANTO 'pessoa' QUANTO 'ong' possam cadastrar,
-    // então não há necessidade de validar o tipo aqui, já que authenticateToken
-    // já garante que é um usuário válido.
-    // if (userTipo !== 'pessoa' && userTipo !== 'ong') {
-    //     return res.status(403).json({ message: 'Tipo de usuário não autorizado para cadastrar doação.' });
-    // }
-    // Opcional: Se você *realmente* quiser restringir, e a mensagem de erro que você vê está correta,
-    // então a validação *estava* sendo feita no middleware authMiddleware.js.
-    // Vamos supor que queremos permitir ambos por agora.
 
     // Inserção da doação no banco de dados, incluindo o id_ong (ID do usuário criador)
     db.run(
@@ -91,8 +79,8 @@ router.get('/', (req, res) => {
     });
 });
 
-// --- ROTA PARA RESERVAR UMA DOAÇÃO (PUT /doacoes/:id/reservar) ---
-// Apenas ONGs podem reservar doações, mas a pessoa que criou não pode reservar a própria doação.
+// ROTA PARA RESERVAR UMA DOAÇÃO (PUT /doacoes/:id/reservar)
+// Apenas ONGs podem reservar doações.
 router.put('/:id/reservar', authenticateToken, (req, res) => {
     const doacaoId = req.params.id;
     const userId = req.user.id;

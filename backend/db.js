@@ -40,7 +40,6 @@ db.serialize(() => {
       estado TEXT,
       alimenticio TEXT,
       descricao TEXT UNIQUE,
-      -- ADICIONADO: Coluna para o ID da ONG que postou a doação
       id_ong INTEGER NOT NULL,
       reservado_por INTEGER,
       FOREIGN KEY(id_ong) REFERENCES usuarios(id), -- Chave estrangeira para o criador

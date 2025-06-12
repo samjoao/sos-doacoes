@@ -6,8 +6,7 @@ import db from '../db.js';
 const router = Router();
 
 // Chave secreta para assinar o JWT.
-// É CRUCIAL que esta chave seja a mesma usada em authMiddleware.js
-// Em produção, use uma variável de ambiente (process.env.JWT_SECRET)
+
 const secretKey = process.env.JWT_SECRET || 'sua_chave_secreta_super_segura';
 
 // Rota de Login
@@ -33,8 +32,7 @@ router.post('/login', (req, res) => {
         
         }
 
-        // --- GERAÇÃO DO JWT ---
-        // Payload do JWT: informações do usuário que serão incluídas no token
+        //  GERAÇÃO DO JWT 
         const payload = {
             id: user.id,
             email: user.email,

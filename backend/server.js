@@ -11,7 +11,7 @@ import doacoes from './routes/doacoes.js';
 import authRoutes from './routes/auth.js';
 
 const app = express();
-const PORT = 5500;
+const PORT = process.env.PORT || 5500; 
 
 // Caminho correto do __dirname no ES Module
 const __filename = fileURLToPath(import.meta.url);

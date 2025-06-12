@@ -2,9 +2,6 @@
 
 import jwt from 'jsonwebtoken';
 
-// Chave secreta para assinar o JWT.
-// É CRUCIAL que esta chave seja a mesma usada em routes/auth.js
-// Em produção, use uma variável de ambiente (process.env.JWT_SECRET)
 const secretKey = process.env.JWT_SECRET || 'sua_chave_secreta_super_segura';
 
 // Middleware para autenticar o token JWT
@@ -38,4 +35,3 @@ export const authorizeOng = (req, res, next) => {
     }
 };
 
-// Se houver outros middlewares, eles também seriam exportados aqui.

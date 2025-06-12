@@ -6,9 +6,11 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node server.js",
+  "ngrok-auth": "ngrok config add-authtoken 2yEkE04HRC9XWmsxYGzeJrhUU68_6ucQss95NvwAyZgiHVK3G",
+  "dev": "NODE_ENV=development node server.js"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -26,5 +28,8 @@
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "ngrok": "^5.0.0-beta.2"
+  }
 }
