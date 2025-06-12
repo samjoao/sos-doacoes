@@ -229,7 +229,7 @@ async function loadDoacoes() {
 
 
                 div.innerHTML = `
-                    <img src="${apiUrl}/uploads/${item.imagem}" alt="${item.descricao}" />
+                    <img src="${API_BASE_URL}/uploads/${item.imagem}" alt="${item.descricao}" />
                     ${statusHtml}
                     <h2>${item.descricao}</h2> <h4>${item.categoria}</h4> <p><strong>Estado:</strong> ${item.estado}</p>
                     <p><strong>Alimentício:</strong> ${item.alimenticio === 'sim' ? 'Sim' : 'Não'}</p>
@@ -312,4 +312,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-//
