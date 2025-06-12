@@ -30,7 +30,11 @@ app.use(session({
     secret: 'sua_chave_secreta_muito_segura', // Use uma string longa e aleatória em produção
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false } // 'secure: true' em produção (HTTPS)
+     cookie: {
+        secure: process.env.NODE_ENV === 'production', // true em produção (HTTPS), false em desenvolvimento
+        httpOnly: true, // Adiciona segurança para cookies
+        maxAge: 1000 * 60 * 60 * 24 // 1 dia de duração (opcional)
+    }
 }));
 
 // Servindo os arquivos estáticos do frontend
