@@ -1,6 +1,6 @@
 // frontend/scripts.js
 
-const apiUrl = 'http://localhost:5500';
+const API_BASE_URL = process.env.VITE_API_URL || 'http://localhost:5500';
 
 // Função para decodificar JWT (simples, para uso no frontend)
 function decodeJwt(token) {
@@ -129,7 +129,7 @@ if (loginForm) {
         const tipo = document.getElementById('tipo').value;
 
         try {
-            const res = await fetch(`${apiUrl}/auth/login`, {
+            const res = await fetch(`${API_BASE_URL}/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -164,7 +164,7 @@ if (cadastroForm) {
         const tipo = this.elements.tipo.value;
 
         try {
-            const res = await fetch(`${apiUrl}/auth/cadastro`, {
+            const res = await fetch(`${API_BASE_URL}/auth/cadastro`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -189,7 +189,7 @@ if (cadastroForm) {
 
 // Função para carregar e exibir as doações
 async function loadDoacoes() {
-    const res = await fetch(`${apiUrl}/doacoes`);
+    const res = await fetch(`${API_BASE_URL}/doacoes`);
     const doacoes = await res.json();
     const lista = document.getElementById('listarDoacoes');
 
@@ -256,7 +256,7 @@ async function reservarDoacao(idDoacao) {
     }
 
     try {
-        const res = await fetch(`${apiUrl}/doacoes/${idDoacao}/reservar`, {
+        const res = await fetch(`${API_BASE_URL}/doacoes/${idDoacao}/reservar`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -288,7 +288,7 @@ async function removeDoacao(idDoacao) {
     }
 
     try {
-        const res = await fetch(`${apiUrl}/doacoes/${idDoacao}`, {
+        const res = await fetch(`${API_BASE_URL}/doacoes/${idDoacao}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -311,3 +311,4 @@ document.addEventListener('DOMContentLoaded', () => {
         loadDoacoes();
     }
 });
+
