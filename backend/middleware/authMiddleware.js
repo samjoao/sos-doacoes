@@ -2,7 +2,7 @@
 
 import jwt from 'jsonwebtoken';
 
-const secretKey = process.env.JWT_SECRET || 'sua_chave_secreta_super_segura';
+const secretKey = process.env.JWT_SECRET || 'sua_chave_secreta_fallback';
 
 // Middleware para autenticar o token JWT
 export const authenticateToken = (req, res, next) => {

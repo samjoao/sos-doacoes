@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Configuração da sessão
 app.use(session({
-    secret: 'sua_chave_secreta_muito_segura', // Use uma string longa e aleatória em produção
+    secret: process.env.SESSION_SECRET || 'sua_chave_secreta_fallback', // Use uma string longa e aleatória em produção
     resave: false,
     saveUninitialized: false,
      cookie: {
