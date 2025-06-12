@@ -19,7 +19,7 @@ const __dirname = path.dirname(__filename);
 
 // Middlewares
 app.use(cors({
-    origin: 'http://localhost:5500', // Permita o frontend acessar
+    origin: ['http://localhost:5500', 'https://sua-url-do-frontend-aqui.vercel.app'],// Permita o frontend acessar
     credentials: true // Importante para enviar cookies de sessão
 }));
 app.use(express.json());

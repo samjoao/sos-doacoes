@@ -1,6 +1,6 @@
 // frontend/scripts.js
 
-const API_BASE_URL = process.env.VITE_API_URL || 'http://localhost:5500';
+const API_BASE_URL = 'https://sos-doacoes-api.onrender.com';
 
 // Função para decodificar JWT (simples, para uso no frontend)
 function decodeJwt(token) {
